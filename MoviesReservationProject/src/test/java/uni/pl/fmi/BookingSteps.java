@@ -8,7 +8,7 @@ import cucumber.api.java.en.When;
 import uni.pl.fmi.model.BookingScreenModel;
 
 public class BookingSteps {
-	BookingScreenModel bookScreen= new BookingScreenModel(); 
+	static BookingScreenModel BookingScreenModel= new BookingScreenModel(); 
 	
 	@Given("Потребитеял отваря екрана за резервация$")
 	public void openLoginScreen() throws Throwable {
@@ -17,48 +17,48 @@ public class BookingSteps {
 	
 	@When("^Потребителя въведе потребителско име \"([^\"]*)\"$")
 	public void addUsеrName(String usrname) throws Throwable {
-		BookingSteps.setUsеrname(usrname);
+		BookingScreenModel.setUsеrname(usrname);
 	}
 
 	@When("^Въведе номер на картата \"([^\"]*)\"$")
 	public void addCardNumber(String cardID) throws Throwable {
-		BookingSteps.setCardNumber(cardID);
+		BookingScreenModel.setCardNumber(cardID);
 	}
 
 	@When("^Въведе дата на изтичане на картата \"([^\"]*)\"$")
 	public void addExpire(String expiryDate) throws Throwable {
-		BookingSteps.setExpire(expiryDate);
+		BookingScreenModel.setExpire(expiryDate);
 	}
 	
 	@When("^Въведе име на прожекцията \"([^\"]*)\"$")
 	public void addTitle(String movieName) throws Throwable {
-		BookingSteps.setTitle(movieName);
+		BookingScreenModel.setTitle(movieName);
 	}
 	
 	@When("^Въведе време на прожекцията \"([^\"]*)\"$")
 	public void addDate(String movieDate) throws Throwable {
-		BookingSteps.setDate(movieDate);
+		BookingScreenModel.setDate(movieDate);
 	}
 	
 	@When("^Въведе място на прожекцията \"([^\"]*)\"$")
 	public void addPlace(String theatreName) throws Throwable {
-		BookingSteps.setPlace(theatreName);
+		BookingScreenModel.setPlace(theatreName);
 	}
 	
 	@When("^Въведе номер на място в залата на прожекцията \"([^\"]*)\"$")
 	public void addSeat(String seatNum) throws Throwable {
-		BookingSteps.setSeat(seatNum);
+		BookingScreenModel.setSeat(seatNum);
 	}
 
 	@When("^Натисне върху бутона за резервиране$")
-	public void clickBookButton() throws Throwable {
-		BookingSteps.clickBookButton();
+	public static void clickBookButton() throws Throwable {
+		BookingScreenModel.clickBookButton();
 	}
 
 	@Then("^Вижда съобщение \"([^\"]*)\"$")
-	public void checkLoginMessage() throws Throwable {
+	public void checkLoginMessage(String expectedMessage) throws Throwable {
 		final String resultMessage = BookingScreenModel.getLoginMessage();
-		assertEquals("Done", resultMessage);
+		assertEquals(expectedMessage, resultMessage);
 	}
 
 }

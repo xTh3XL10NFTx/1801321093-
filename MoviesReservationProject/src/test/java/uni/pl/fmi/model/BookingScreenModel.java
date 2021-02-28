@@ -5,8 +5,8 @@ import uni.pl.fmi.services.BookingService;
 public class BookingScreenModel {
 
 	public String usrname;
-	private String cardID;
-	private String expiryDate;
+	public String cardID;
+	public String expiryDate;
 	private String movieName;
 	private String movieDate;
 	private String theatreName;
@@ -17,39 +17,39 @@ public class BookingScreenModel {
 		System.out.println("Отворена е страницата за вход в системата!");	
 	}
 	
-	private void setUsеrname(String usrname) {
+	public void setUsеrname(String usrname) {
 		this.usrname=usrname;
 	}
 	
-	private void setCardNumber(String cardID) {
+	public void setCardNumber(String cardID) {
 		this.cardID=cardID;
 	}
 	
-	private void setExpire(String expiryDate) {
+	public void setExpire(String expiryDate) {
 		this.expiryDate=expiryDate;
 	}
 
-	private void setTitle(String movieName) {
+	public void setTitle(String movieName) {
 		this.movieName=movieName;
 	}
 	
-	private void setDate(String movieDate) {
+	public void setDate(String movieDate) {
 		this.movieDate=movieDate;
 	}
 	
-	private void theatreName(String theatreName) {
+	public void setPlace(String theatreName) {
 		this.theatreName=theatreName;
 	}
 	
-	private void setSeat(String seatNum) {
+	public void setSeat(String seatNum) {
 		this.seatNum=seatNum;
 	}
 	
-	private void clickBookButton() {
+	public void clickBookButton() {
 		message = BookingService.reservation(usrname, cardID, expiryDate, movieName, movieDate, theatreName, seatNum);
 	}
 	
-	private String getLoginMessage() {
+	public String getLoginMessage() {
 		return message;
 	}
 }
