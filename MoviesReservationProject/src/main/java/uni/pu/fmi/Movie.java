@@ -1,4 +1,5 @@
 package uni.pu.fmi;
+
 import java.util.*;
 
 /**
@@ -6,22 +7,18 @@ import java.util.*;
  */
 public class Movie {
 
-    private Set<System> movieName;
+    private String movieName;
     private String theatreName;
     private String movieDate;
     private int hallNum;
     private Set<Category> category;
-    public Set<Reservation> reservations;
-    public Set<System> system;
-    public Set<Category> categories;
-    
     /**
      * Default constructor
      */
     public Movie() {
     }
 
-    public Set<System> getMovieName() {
+    public String getMovieName() {
         return movieName;
     }
 
@@ -29,13 +26,10 @@ public class Movie {
      * @param movieName 
      * @return
      */
-    public void setMovieName(Set<System> movieName) {
-        this.movieName=movieName;
+    public void setMovieName(String movieName) {
+    	this.movieName=movieName;
     }
 
-    /**
-     * @return
-     */
     public String getMovieDate() {
         return movieDate;
     }
@@ -45,12 +39,9 @@ public class Movie {
      * @return
      */
     public void setMovieDate(String movieDate) {
-        this.movieDate=movieDate;
+    	this.movieDate=movieDate;
     }
 
-    /**
-     * @return
-     */
     public int getHallNum() {
         return hallNum;
     }
@@ -60,12 +51,9 @@ public class Movie {
      * @return
      */
     public void setHallNum(int hallNum) {
-        this.hallNum=hallNum;
+    	this.hallNum=hallNum;
     }
 
-    /**
-     * @return
-     */
     public String getTheatreName() {
         return theatreName;
     }
@@ -75,12 +63,9 @@ public class Movie {
      * @return
      */
     public void setTheatreName(String theatreName) {
-        this.theatreName=theatreName;
+    	this.theatreName=theatreName;
     }
 
-    /**
-     * @return
-     */
     public Set<Category> getCategory() {
         return category;
     }
@@ -90,7 +75,7 @@ public class Movie {
      * @return
      */
     public void setCategory(Set<Category> category) {
-        this.category=category;
+    	this.category=category;
     }
 
 }

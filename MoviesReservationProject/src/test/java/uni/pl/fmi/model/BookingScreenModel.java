@@ -10,10 +10,10 @@ public class BookingScreenModel {
 	private String movieName;
 	private String movieDate;
 	private String theatreName;
-	private String seatNum;
+	public String seatNum;
     private String message;
 
-	public static void navigateToMe() {
+	public void navigateToMe() {
 		System.out.println("Отворена е страницата за вход в системата!");	
 	}
 	

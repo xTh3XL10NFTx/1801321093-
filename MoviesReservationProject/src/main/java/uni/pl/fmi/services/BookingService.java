@@ -1,55 +1,57 @@
 package uni.pl.fmi.services;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
-import uni.pu.fmi.Movie;
 import uni.pu.fmi.Reservation;
 import uni.pu.fmi.User;
 
 public class BookingService{
 	
 
+	@SuppressWarnings("deprecation")
 	public static String reservation(String usrName, String cardID, String expiryDate, String movieName, String movieDate, String theatreName, String seatNum) {
 
-		if (usrName == null) {
-			return "Грешно потребителско име!";
+		if (usrName.isEmpty()) {
+			return "Резервацията е неуспешна" ;
 		}
-		if (cardID == null || Integer.parseInt(cardID) < 1) {
-			return "Номерът на картата не съществува!";
+		if (cardID.isEmpty()) {
+			return "Резервацията е неуспешна" ;
 		}
-		if (expiryDate == null) {
-			return "Въведете краем срок на годност на картата!";
+		if (expiryDate.isEmpty()) {
+			return "Резервацията е неуспешна" ;
 		}
-		if (movieName == null) {
-			return "Филмът не съществува!";
+		if (movieName.isEmpty()) {
+			return "Резервацията е неуспешна" ;
 		}
-		if (movieDate == null) {
-			return "Изберете подходящо за Вас време от изброените!";
+		if (movieDate.isEmpty()) {
+			return "Резервацията е неуспешна" ;
 		}
-		if (theatreName == null) {
-			return "Изберете подходящо за Вас място от изброените!";
+		if (theatreName.isEmpty()) {
+			return "Резервацията е неуспешна" ;
 		}
-		if (seatNum == null || Integer.parseInt(cardID) < 1) {
-			return "Изберете си място по време на прожекцията!";
+		if (seatNum.isEmpty() || Integer.parseInt(cardID) < 1) {
+			return "Резервацията е неуспешна" ;
 		}
 		
-//			String timeLimit = "01:00";
-			String currentTime = "09:00";
-			SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
-			Date d1 = null;
+		
+			String timeLimit = "01:00";
+			String currentTime = "09:30";
+			SimpleDateFormat formatter = new SimpleDateFormat("hh:mm a");
+			Date d1;
+			d1 = extracted();
 			try {
-				d1 = formatter.parse(movieDate);
+				d1 = formatter.parse(timeLimit);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			Date d2 = null;
+			Date d2;
+			d2 = extracted();
 			try {
 				d2 = formatter.parse(currentTime);
 			} catch (ParseException e) {
@@ -62,18 +64,26 @@ public class BookingService{
 				return "Съжеляваме, не се допъскат резервации при по-малко от час преди прожекцията!";
 		}
 		
-		final List<User> users = getUsers();
-		final boolean isUserMatch = users.stream().anyMatch(user -> 
-											user.getUsrName().equals(usrName));
-		return isUserMatch? "Вече има резервация на името на този потребител!" : "Успешно направихте резервация за прожекцията!";
+		final List<Reservation> reservations = getReservations();
+		final boolean isSeatMatch = reservations.stream().anyMatch(reservation -> 
+											reservation.getSeatNum().equals(seatNum));
+		return isSeatMatch? "Резервацията е неуспешна" : "Резервацията е успешна";
+		
 	}
 
-	public static List<User> getUsers() {
-		final User user = new User();
-		user.setUsrName("Ivan");
-		final List<User> result = new ArrayList<>();
-		result.add(user);
+	private static Date extracted() {
+		Date d1;
+		d1 = new Date("hh:mm");
+		return d1;
+	}
+
+	private static List<Reservation> getReservations() {
+		final Reservation reservation = new Reservation();
+		reservation.setSeatNum("2");
+		final List<Reservation> result = new ArrayList<>();
+		result.add(reservation);
 		return result;
 	}
 
-}
+
+	}
