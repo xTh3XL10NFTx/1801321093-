@@ -1,6 +1,5 @@
 package uni.pl.fmi.services;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,7 +42,7 @@ public class BookingService{
 			String currentTime = "09:30";
 			SimpleDateFormat formatter = new SimpleDateFormat("hh:mm a");
 			Date d1;
-			d1 = extracted();
+			d1 = new Date("hh:mm a");
 			try {
 				d1 = formatter.parse(timeLimit);
 			} catch (ParseException e) {
@@ -51,7 +50,7 @@ public class BookingService{
 				e.printStackTrace();
 			}
 			Date d2;
-			d2 = extracted();
+			d2 = new Date("hh:mm a");
 			try {
 				d2 = formatter.parse(currentTime);
 			} catch (ParseException e) {
@@ -69,12 +68,6 @@ public class BookingService{
 											reservation.getSeatNum().equals(seatNum));
 		return isSeatMatch? "Резервацията е неуспешна" : "Резервацията е успешна";
 		
-	}
-
-	private static Date extracted() {
-		Date d1;
-		d1 = new Date("hh:mm");
-		return d1;
 	}
 
 	private static List<Reservation> getReservations() {
