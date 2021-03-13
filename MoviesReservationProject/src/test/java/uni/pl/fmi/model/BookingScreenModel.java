@@ -45,7 +45,7 @@ public class BookingScreenModel {
 		this.seatNum=seatNum;
 	}
 	
-	public void clickBookButton() {
+	public void clickBookButton() throws Exception {
 		message = BookingService.reservation(usrname, cardID, expiryDate, movieName, movieDate, theatreName, seatNum);
 	}
 	
