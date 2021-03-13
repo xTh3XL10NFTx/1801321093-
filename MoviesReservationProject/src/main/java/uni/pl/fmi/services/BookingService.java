@@ -32,8 +32,7 @@ public class BookingService{
 		}
 		if (seatNum.isEmpty() || Integer.parseInt(cardID) < 1) {
 			return "Резервацията е неуспешна" ;
-		}
-		
+		}		
 		
 			String bookingtime = "09:00";
 			Date d1=new SimpleDateFormat("hh:mm").parse(bookingtime);
